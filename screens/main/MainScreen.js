@@ -49,7 +49,7 @@ class MainScreen extends Component {
   }
 
   render() {
-    let { formData: { name, age }, sendForm, updateFormData, formErrors } = this.props;
+    let { formData: { name, age, number }, sendForm, updateFormData, formErrors } = this.props;
 
     return (
       <Drawer
@@ -97,7 +97,7 @@ class MainScreen extends Component {
                   onChangeText={(number) => updateFormData({ name: 'number', value: number})}
                   value={number}
                 />
-                <Text>{formErrors.age}</Text>
+                <Text>{formErrors.number}</Text>
               </Item>
 
               <Item picker style={styles.emailInput}>
@@ -222,11 +222,15 @@ let validators = {
   "name": [[isNonEmpty, "Please enter your name"]],
   "age": [
     [isNonEmpty, "Please enter your age"],
-    [isGreatherThan(17), "You should be over the age of 18"]]
+    [isGreatherThan(17), "You should be over the age of 18"]],
+    "number": [
+      [isNonEmpty,"Please enter your number"],
+      [isGreatherThan(9), 'Number should be 10 digits']
+    ]
 }
 
 const enhance = compose(
-  withFormData({ name: "", age: "" }),
+  withFormData({ name: "", age: "", number:"" }),
   withFormHandlers({
     rules: validators,
     onSuccess: (props) => {
@@ -239,6 +243,7 @@ const enhance = compose(
     }
   })
 )
+
 
 const styles = ScaledSheet.create({
   text: {
