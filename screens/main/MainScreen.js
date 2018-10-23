@@ -94,8 +94,8 @@ class MainScreen extends Component {
               <Item floatingLabel style={styles.emailInput}>
                 <Label>Mobile Number</Label>
                 <Input
-                  onChangeText={(age) => updateFormData({ name: 'age', value: age })}
-                  value={age}
+                  onChangeText={(number) => updateFormData({ name: 'number', value: number})}
+                  value={number}
                 />
                 <Text>{formErrors.age}</Text>
               </Item>
